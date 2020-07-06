@@ -36,26 +36,26 @@ import com.google.common.collect.ImmutableListMultimap;
 public class EnergyEventHandler implements ActivityStartEventHandler, ActivityEndEventHandler, PersonLeavesVehicleEventHandler,
 ChargingEndEventHandler, MobsimScopeEventHandler {
 
-	private final String vehicleType;
+	public String vehicleType;
 	
 	public static final String CHARGING_IDENTIFIER = " charging";
 	public static final String CHARGING_INTERACTION = PlanCalcScoreConfigGroup.createStageActivityType(CHARGING_IDENTIFIER);
 	private Map<Id<Person>, Id<Vehicle>> lastVehicleUsed = new HashMap<>();
 	private Map<Id<ElectricVehicle>, Id<Charger>> vehiclesAtChargers = new HashMap<>();
 
-	private ChargingInfrastructure chargingInfrastructure;
-	private ElectricFleet electricFleet;
-	private ImmutableListMultimap<Id<Link>, Charger> chargersAtLinks;
+	private final ChargingInfrastructure chargingInfrastructure;
+	private final ElectricFleet electricFleet;
+	private final ImmutableListMultimap<Id<Link>, Charger> chargersAtLinks;
 
 	@Inject
-	public void EventEnergyHandler(ChargingInfrastructure chargingInfrastructure, ElectricFleet electricFleet,
+	public EnergyEventHandler(ChargingInfrastructure chargingInfrastructure, ElectricFleet electricFleet,
 			MobsimScopeEventHandling events) {
 		this.chargingInfrastructure = chargingInfrastructure;
 		this.electricFleet = electricFleet;
 		chargersAtLinks = ChargingInfrastructures.getChargersAtLinks(chargingInfrastructure);
 		events.addMobsimScopeHandler(this);
 	}
-
+	
 	@Override
 	public void handleEvent(ActivityStartEvent event) {
 		if (event.getActType().endsWith(CHARGING_INTERACTION)) {
@@ -106,10 +106,10 @@ ChargingEndEventHandler, MobsimScopeEventHandler {
 		
 		EnergyEventHandler model = new EnergyEventHandler();
 		if (model.vehicleType == "defaultVehicleType") {
-			model.handleEvent(ActivityEndEvent event);
+			model.handleEvent();
 		}
 		else if (model.vehicleType == "conventionalVehicleType") {
-			
+			model.handleEvent();
 		}
 	
 	

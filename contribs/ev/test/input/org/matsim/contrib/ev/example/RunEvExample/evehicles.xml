@@ -1,7 +1,7 @@
 <!DOCTYPE vehicles SYSTEM "http://matsim.org/files/dtd/electric_vehicles_v1.dtd">
 
 <vehicles>
-	<vehicle id="0" battery_capacity="60" initial_soc="60" charger_types="default" vehicle_type="defaultVehicleType"/>
+	<vehicle id="0" battery_capacity="60" initial_soc="60" charger_types="default" vehicle_type="conventionalVehicleType"/>
 	<vehicle id="1" battery_capacity="60" initial_soc="60" charger_types="default" vehicle_type="defaultVehicleType"/>
 	<vehicle id="2" battery_capacity="60" initial_soc="60" charger_types="default" vehicle_type="defaultVehicleType"/>
 	<vehicle id="3" battery_capacity="60" initial_soc="60" charger_types="default" vehicle_type="defaultVehicleType"/>

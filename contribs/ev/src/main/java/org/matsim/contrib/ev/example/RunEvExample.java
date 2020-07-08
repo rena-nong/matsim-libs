@@ -41,7 +41,7 @@ import org.matsim.core.mobsim.qsim.AbstractQSimModule;
 import org.matsim.core.scenario.ScenarioUtils;
 
 public class RunEvExample {
-	static final String DEFAULT_CONFIG_FILE = "test/input/org/matsim/contrib/ev/example/RunEvExample/config.xml";
+	static final String DEFAULT_CONFIG_FILE = "test/input/org/matsim/contrib/ev/example/equil_test_ev/config.xml";
 	private static final Logger log = Logger.getLogger(RunEvExample.class);
 
 	public static void main(String[] args) throws IOException {

@@ -35,27 +35,27 @@ import com.google.common.collect.ImmutableListMultimap;
 
 public class EnergyEventHandler implements ActivityStartEventHandler, ActivityEndEventHandler, PersonLeavesVehicleEventHandler,
 ChargingEndEventHandler, MobsimScopeEventHandler {
-
 	public String vehicleType;
 	
-	public static final String CHARGING_IDENTIFIER = " charging";
-	public static final String CHARGING_INTERACTION = PlanCalcScoreConfigGroup.createStageActivityType(CHARGING_IDENTIFIER);
-	private Map<Id<Person>, Id<Vehicle>> lastVehicleUsed = new HashMap<>();
-	private Map<Id<ElectricVehicle>, Id<Charger>> vehiclesAtChargers = new HashMap<>();
-
-	private final ChargingInfrastructure chargingInfrastructure;
-	private final ElectricFleet electricFleet;
-	private final ImmutableListMultimap<Id<Link>, Charger> chargersAtLinks;
-
-	@Inject
-	public EnergyEventHandler(ChargingInfrastructure chargingInfrastructure, ElectricFleet electricFleet,
-			MobsimScopeEventHandling events) {
-		this.chargingInfrastructure = chargingInfrastructure;
-		this.electricFleet = electricFleet;
-		chargersAtLinks = ChargingInfrastructures.getChargersAtLinks(chargingInfrastructure);
-		events.addMobsimScopeHandler(this);
-	}
+	/*public String getVehicleType() {
+		return vehicleType;
+	}*/
 	
+	public void energyEventHandler() {
+		EnergyEventHandler vehicle = new EnergyEventHandler();
+		if (vehicle.vehicleType == "defaultVehicleType") {
+			vehicle.handleEvent(event);
+			
+			
+			
+		}
+		else if (vehicle.vehicleType == "regularVehicleType") {
+			vehicle.;
+		}
+	
+	
+	}
+
 	@Override
 	public void handleEvent(ActivityStartEvent event) {
 		if (event.getActType().endsWith(CHARGING_INTERACTION)) {
@@ -100,18 +100,5 @@ ChargingEndEventHandler, MobsimScopeEventHandler {
 	public void handleEvent(ChargingEndEvent event) {
 		vehiclesAtChargers.remove(event.getVehicleId());
 		//Charging has ended before activity ends
-	}
-	
-	public static void main(String args[]) {
-		
-		EnergyEventHandler model = new EnergyEventHandler();
-		if (model.vehicleType == "defaultVehicleType") {
-			model.handleEvent();
-		}
-		else if (model.vehicleType == "conventionalVehicleType") {
-			model.handleEvent();
-		}
-	
-	
 	}
 }
